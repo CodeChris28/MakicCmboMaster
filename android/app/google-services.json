@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1049655351780",
+    "project_id": "makicombomaster",
+    "storage_bucket": "makicombomaster.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049655351780:android:1f7d1cf7c77a4772fe4ff1",
+        "android_client_info": {
+          "package_name": "com.example.makicombomaster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3MAN_iJBOhp3SYztxZLHL0LRyBT45VIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
