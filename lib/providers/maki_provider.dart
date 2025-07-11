@@ -5,6 +5,14 @@ import 'package:makicombomaster/services/maki_service.dart';
 class MakiProvider extends ChangeNotifier {
   final _makiService = MakiService();
   List<Maki> _makis = [];
+  MakiProvider() {
+    _initializeMakis();
+  }
+
+  Future<void> _initializeMakis() async {
+    _makis = await _makiService.getAllMakis();
+    notifyListeners();
+  }
 
   List<Maki> get makis => _makis;
 

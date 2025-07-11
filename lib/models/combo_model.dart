@@ -2,11 +2,13 @@ class Combo {
   final String id;
   final String name;
   final List<String> makiIds;
+  final String userId;
 
   Combo({
     required this.id,
     required this.name,
     required this.makiIds,
+    required this.userId,
   });
 
   factory Combo.fromMap(String id, Map<String, dynamic> data) {
@@ -14,6 +16,7 @@ class Combo {
       id: id,
       name: data['name'],
       makiIds: List<String>.from(data['makiIds']),
+      userId: data['userId'],
     );
   }
 
@@ -21,6 +24,7 @@ class Combo {
     return {
       'name': name,
       'makiIds': makiIds,
+      'userId': userId,
     };
   }
 }

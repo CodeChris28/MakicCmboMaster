@@ -5,6 +5,13 @@ import '../services/combo_service.dart';
 class ComboProvider extends ChangeNotifier {
   final _comboService = ComboService();
   List<Combo> _combos = [];
+  ComboProvider() {
+    _initializeCombos();
+  }
+  Future<void> _initializeCombos() async {
+    _combos = await _comboService.getAllCombos();
+    notifyListeners();
+  }
 
   List<Combo> get combos => _combos;
 

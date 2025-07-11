@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makicombomaster/models/combo_model.dart';
-
 class ComboService {
   final _combosRef = FirebaseFirestore.instance.collection('combos');
 
@@ -40,4 +39,12 @@ class ComboService {
       return false;
     }
   }
+
+  Future<List<Combo>> getCombosByUserId(String userId) async {
+  final snapshot = await _combosRef.where('userId', isEqualTo: userId).get();
+  return snapshot.docs
+      .map((doc) => Combo.fromMap(doc.id, doc.data()))
+      .toList();
+}
+
 }

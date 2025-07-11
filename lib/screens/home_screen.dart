@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makicombomaster/widgets/bottom_navigation_bar_widget.dart';
 import 'package:makicombomaster/widgets/combo_card.dart';
 import 'package:provider/provider.dart';
 import '../providers/combo_provider.dart';
@@ -62,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
               ),
             ),
+            bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
