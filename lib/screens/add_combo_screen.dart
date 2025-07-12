@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makicombomaster/models/combo_model.dart';
 import 'package:makicombomaster/models/maki_model.dart';
-import 'package:makicombomaster/widgets/bottom_navigation_bar_widget.dart';
+import 'package:makicombomaster/widgets/create_maki_card.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import '../providers/combo_provider.dart';
@@ -32,29 +32,34 @@ class AddComboScreen extends StatelessWidget {
             const SizedBox(height: 10),
             const Text("Selecciona los makis:"),
             Expanded(
-              child: ListView.builder(
-                itemCount: allMakis.length,
-                itemBuilder: (context, index) {
-                  final maki = allMakis[index];
-                  return StatefulBuilder(
-                    builder: (context, setState) {
-                      final selected = selectedMakiIds.contains(maki.id);
-                      return CheckboxListTile(
-                        title: Text(maki.name),
-                        value: selected,
-                        onChanged: (val) {
-                          setState(() {
-                            if (val == true) {
-                              selectedMakiIds.add(maki.id);
-                            } else {
-                              selectedMakiIds.remove(maki.id);
-                            }
-                          });
-                        },
-                      );
+              child: ListView(
+                children: [
+                  CreateMakiCard(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'addMakiScreen');
                     },
-                  );
-                },
+                  ),
+                  ...allMakis.map((maki) {
+                    return StatefulBuilder(
+                      builder: (context, setState) {
+                        final selected = selectedMakiIds.contains(maki.id);
+                        return CheckboxListTile(
+                          title: Text(maki.name),
+                          value: selected,
+                          onChanged: (val) {
+                            setState(() {
+                              if (val == true) {
+                                selectedMakiIds.add(maki.id);
+                              } else {
+                                selectedMakiIds.remove(maki.id);
+                              }
+                            });
+                          },
+                        );
+                      },
+                    );
+                  }).toList(),
+                ],
               ),
             ),
             ElevatedButton(
@@ -66,14 +71,17 @@ class AddComboScreen extends StatelessWidget {
                   userId: 'test_user', // luego reemplaza por el UID real
                 );
                 comboProvider.addCombo(combo);
-                Navigator.pushReplacementNamed(context, 'homeScreen');
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  'homeScreen',
+                  (route) => false,
+                );
               },
               child: const Text("Guardar Combo"),
-            )
+            ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

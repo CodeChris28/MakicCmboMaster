@@ -1,6 +1,8 @@
+// lib/screens/home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:makicombomaster/widgets/bottom_navigation_bar_widget.dart';
 import 'package:makicombomaster/widgets/combo_card.dart';
+import 'package:makicombomaster/widgets/create_combo_card.dart'; // Importa el nuevo widget
 import 'package:provider/provider.dart';
 import '../providers/combo_provider.dart';
 
@@ -51,19 +53,26 @@ class _HomeScreenState extends State<HomeScreen> {
           ? const Center(child: CircularProgressIndicator())
           : RefreshIndicator(
               onRefresh: loadCombos,
-              child: Padding(
+              child: ListView(
                 padding: const EdgeInsets.all(10.0),
-                child: combos.isEmpty
-                    ? const Center(child: Text("Aún no tienes combos favoritos"))
-                    : ListView.builder(
-                        itemCount: combos.length,
-                        itemBuilder: (context, index) {
-                          return ComboCard(combo: combos[index]);
-                        },
-                      ),
+                children: [
+                  // La tarjeta para crear un nuevo combo
+                  CreateComboCard(
+                    onTap: () {
+                      // AQUÍ es donde debes ponerlo:
+                      Navigator.pushNamed(context, 'addComboScreen'); 
+                    },
+                  ),
+                  const SizedBox(height: 10), 
+
+                  if (combos.isEmpty)
+                    const Center(child: Text("Aún no tienes combos favoritos"))
+                  else
+                    ...combos.map((combo) => ComboCard(combo: combo)).toList(),
+                ],
               ),
             ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

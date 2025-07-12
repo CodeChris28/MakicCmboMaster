@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     child: MaterialApp(
       title: 'Maki Combo Master',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 255, 235, 227)),
       ),
       routes: AppRoutes.getRoutes,
       initialRoute: AppRoutes.initialRoute,

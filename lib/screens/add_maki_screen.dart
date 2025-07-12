@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:makicombomaster/models/maki_model.dart';
-import 'package:makicombomaster/widgets/bottom_navigation_bar_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import '../providers/maki_provider.dart';
@@ -52,7 +51,6 @@ class AddMakiScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

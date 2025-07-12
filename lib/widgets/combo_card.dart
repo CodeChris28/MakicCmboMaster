@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:makicombomaster/models/combo_model.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class ComboCard extends StatelessWidget {
   final Combo combo;
@@ -23,8 +22,7 @@ class ComboCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
           child: Row(
             children: [
-              const Icon(Icons.ramen_dining, size: 28, color: Colors.deepOrange),
-              const SizedBox(width: 12),
+              SizedBox(height: 20, child: Image.asset('lib/assets/heart_icon.png')),
               Expanded(
                 child: Text(
                   combo.name,
@@ -33,7 +31,7 @@ class ComboCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Container(height: 30, child: Image.asset('assets/maki_icon.png')),
+                  SizedBox(height: 30, child: Image.asset('lib/assets/maki_icon.png')),
                   Text(
                     'x${combo.makiIds.length}',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
