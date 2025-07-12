@@ -7,6 +7,7 @@ class AppRoutes {
     'homeScreen': (BuildContext context) => const HomeScreen(),
     'addMakiScreen': (BuildContext context) => const AddMakiScreen(),
     'addComboScreen': (BuildContext context) => const AddComboScreen(),
+    'makisScreen': (BuildContext context) => const MakisScreen(),
   };
 
 }

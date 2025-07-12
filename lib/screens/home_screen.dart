@@ -25,15 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> loadCombos() async {
-    setState(() {
-      _isLoading = true;
-    });
+  if (!mounted) return;
+  setState(() {
+    _isLoading = true;
+  });
 
-    await context.read<ComboProvider>().getAllCombos(); 
-    setState(() {
-      _isLoading = false;
-    });
-  }
+  await context.read<ComboProvider>().getAllCombos();
+
+  if (!mounted) return;
+  setState(() {
+    _isLoading = false;
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {

@@ -18,10 +18,10 @@ class BottomNavigationBarWidget extends StatelessWidget {
             Navigator.pushReplacementNamed(context, 'homeScreen');
             break;
           case 1:
-            Navigator.pushReplacementNamed(context, 'addMakiScreen');
+            Navigator.pushReplacementNamed(context, 'makisScreen');
             break;
           case 2:
-            Navigator.pushReplacementNamed(context, 'addComboScreen'); 
+            Navigator.pushReplacementNamed(context, 'profileScreen');
             break;
         }
       },
@@ -30,12 +30,12 @@ class BottomNavigationBarWidget extends StatelessWidget {
       selectedItemColor: Colors.deepPurple,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.list_alt_outlined),
-          label: "Operaciones",
+          icon: Icon(Icons.home_outlined),
+          label: "Inicio",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.add_circle_outline),
-          label: "Crear Bono",
+          icon: Icon(Icons.set_meal_outlined),
+          label: "Mis Makis",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person_outline),
