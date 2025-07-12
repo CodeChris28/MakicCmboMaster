@@ -13,18 +13,11 @@ class MakiCard extends StatelessWidget {
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
-        leading: maki.imageUrl != null && maki.imageUrl!.isNotEmpty
-            ? ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  maki.imageUrl!,
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => const Icon(Icons.image_not_supported),
-                ),
-              )
-            : const Icon(Icons.rice_bowl),
+        leading: SizedBox(
+          height: 36,
+          width: 36,
+          child: Image.asset('lib/assets/maki_icon.png'),
+        ),
         title: Text(maki.name),
         subtitle: Text(maki.description),
       ),

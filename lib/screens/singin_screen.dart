@@ -1,22 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:makicombomaster/screens/home_screen.dart';
-import 'package:makicombomaster/screens/singin_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SigninScreen extends StatefulWidget {
+  const SigninScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SigninScreen> createState() => _SigninScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SigninScreenState extends State<SigninScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future<void> login() async {
+  Future<void> register() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
@@ -28,13 +27,10 @@ class _LoginScreenState extends State<LoginScreen> {
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
-          title: const Text('Error de inicio de sesión'),
+          title: const Text('Error al registrarse'),
           content: Text(e.toString()),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cerrar'),
-            )
+            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cerrar')),
           ],
         ),
       );
@@ -44,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Iniciar Sesión')),
+      appBar: AppBar(title: const Text('Registrarse')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -52,13 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
             TextField(controller: emailController, decoration: const InputDecoration(labelText: 'Correo')),
             TextField(controller: passwordController, obscureText: true, decoration: const InputDecoration(labelText: 'Contraseña')),
             const SizedBox(height: 20),
-            ElevatedButton(onPressed: login, child: const Text('Ingresar')),
-            TextButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const SigninScreen()));
-              },
-              child: const Text('¿No tienes cuenta? Regístrate'),
-            ),
+            ElevatedButton(onPressed: register, child: const Text('Registrarse')),
           ],
         ),
       ),

@@ -60,10 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ListView(
                 padding: const EdgeInsets.all(10.0),
                 children: [
-                  // La tarjeta para crear un nuevo combo
+
                   CreateComboCard(
                     onTap: () {
-                      // AQUÍ es donde debes ponerlo:
+
                       Navigator.pushNamed(context, 'addComboScreen'); 
                     },
                   ),

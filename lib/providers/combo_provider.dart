@@ -21,11 +21,11 @@ class ComboProvider extends ChangeNotifier {
   }
 
   Future<void> addCombo(Combo combo) async {
-  final result = await _comboService.addCombo(combo);
-  if (result) {
-    await getAllCombos();
+    final result = await _comboService.addCombo(combo);
+    if (result) {
+      await getAllCombos();
+    }
   }
-}
 
   Future<void> deleteCombo(String id) async {
     final result = await _comboService.deleteCombo(id);
@@ -33,5 +33,10 @@ class ComboProvider extends ChangeNotifier {
       _combos = _combos.where((combo) => combo.id != id).toList();
       notifyListeners();
     }
+  }
+
+  Future<void> updateCombo(Combo combo) async {
+    await _comboService.updateCombo(combo);
+    await getAllCombos();
   }
 }
