@@ -30,15 +30,16 @@ class _AddMakiScreenState extends State<AddMakiScreen> {
     }
   }
 
-  Future<String?> uploadImage(File imageFile) async {
+  Future<String?> uploadImage(File imageFile, String id) async {
     try {
       final ref = FirebaseStorage.instance
           .ref()
           .child('makis')
-          .child('${const Uuid().v4()}.jpg');
+          .child('$id.jpg');
       await ref.putFile(imageFile);
       return await ref.getDownloadURL();
     } catch (e) {
+      print('Error al subir imagen: $e');
       return null;
     }
   }
@@ -48,13 +49,15 @@ class _AddMakiScreenState extends State<AddMakiScreen> {
       _isUploading = true;
     });
 
+    final String makiId = const Uuid().v4();
     String? imageUrl;
+
     if (_image != null) {
-      imageUrl = await uploadImage(_image!);
+      imageUrl = await uploadImage(_image!, makiId); 
     }
 
     final maki = Maki(
-      id: const Uuid().v4(),
+      id: makiId,
       name: nameController.text,
       description: descriptionController.text,
       imageUrl: imageUrl,
